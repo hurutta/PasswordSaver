@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService
 {
     @Autowired
-    public UserRepository restaurentRepository;
+    public UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository restaurentRepository)
+    public UserServiceImpl(UserRepository userRepository)
     {
-        this.restaurentRepository = restaurentRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService
     {
 
         List<User>temporaryList = new ArrayList<User>();
-        temporaryList = restaurentRepository.findByUsername(user.getUsername());
+        temporaryList = userRepository.findByUsername(user.getUsername());
         
         if(authentication(temporaryList.get(0),user))
         {
@@ -35,26 +35,26 @@ public class UserServiceImpl implements UserService
         }else
         {
             return null;
-        }
+        }   
     }
 
     @Override
     public String createOrder(User user)
     {
         List<User>temporaryList = new ArrayList<User>();
-        temporaryList = restaurentRepository.findByUsername(user.getUsername());
+        temporaryList = userRepository.findByUsername(user.getUsername());
         if(temporaryList.size() == 0)
         {
-            restaurentRepository.insert(user);
+            userRepository.insert(user);
             return "new user added\n";
         }else
         {
             if(authentication(temporaryList.get(0),user))
             {
-                restaurentRepository.delete(user);
+                userRepository.delete(user);
                 User newUser = temporaryList.get(0);
                 newUser.userData.add(user.userData.get(0));
-                restaurentRepository.insert(newUser);
+                userRepository.insert(newUser);
                 return "new website added for user : "+ newUser.getUsername() +"\n";
             }else
             {
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService
     public String delete(User user) 
     {
         List<User>temporaryList = new ArrayList<User>();
-        temporaryList = restaurentRepository.findByUsername(user.getUsername());
+        temporaryList = userRepository.findByUsername(user.getUsername());
         if(temporaryList.size() == 0)
         {
             return "user not found\n";
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService
         {
             if(authentication(temporaryList.get(0),user))
             {
-                restaurentRepository.delete(user);
+                userRepository.delete(user);
                 User newUser = temporaryList.get(0);
                 newUser.userData.remove(user.userData.get(0));
                 
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService
                     }
                 }
 
-                restaurentRepository.insert(newUser);
+                userRepository.insert(newUser);
                 return "website removed for user : "+ newUser.getUsername() +"\n";
             }else
             {
@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService
     public String update(User user)
     {
         List<User>temporaryList = new ArrayList<User>();
-        temporaryList = restaurentRepository.findByUsername(user.getUsername());
+        temporaryList = userRepository.findByUsername(user.getUsername());
         if(temporaryList.size() == 0)
         {
             return "user not found\n";
@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService
         {
             if(authentication(temporaryList.get(0),user))
             {
-                restaurentRepository.delete(user);
+                userRepository.delete(user);
                 User newUser = temporaryList.get(0);
                 newUser.userData.remove(user.userData.get(0));
                 
@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService
                         break;
                     }
                 }
-                restaurentRepository.insert(newUser);
+                userRepository.insert(newUser);
                 return "website updated for user : "+ newUser.getUsername() +"\n";
             }else
             {
@@ -140,5 +140,17 @@ public class UserServiceImpl implements UserService
         return false;
     }
 
+    public Boolean loginAuthentication(User user)
+    {
+        List<User>temporaryList = new ArrayList<User>();
+        temporaryList = userRepository.findByUsername(user.getUsername());
+        if(temporaryList.size() == 0)
+        {
+            return false;
+        }else
+        {
+            return authentication(temporaryList.get(0),user);
+        }
+    }
 
 }

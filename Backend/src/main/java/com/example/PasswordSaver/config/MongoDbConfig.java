@@ -15,7 +15,7 @@ public class MongoDbConfig
     @Bean
     public MongoClient mongo() 
     {
-        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/restaurentDB");
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/passwordDB");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
           .applyConnectionString(connectionString)
           .build();
@@ -26,6 +26,6 @@ public class MongoDbConfig
     @Bean
     public MongoTemplate mongoTemplate() throws Exception 
     {
-        return new MongoTemplate(mongo(), "restaurentDB");
+        return new MongoTemplate(mongo(), "passwordDB");
     }
 }

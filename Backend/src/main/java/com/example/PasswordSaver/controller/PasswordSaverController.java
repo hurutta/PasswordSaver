@@ -1,7 +1,6 @@
 package com.example.PasswordSaver.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.PasswordSaver.model.User;
 import com.example.PasswordSaver.model.UserData;
@@ -10,8 +9,6 @@ import com.example.PasswordSaver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,33 +21,39 @@ public class PasswordSaverController
 {
 
     @Autowired
-    public UserService restaurentService;
+    public UserService userService;
 
 
-    @GetMapping(value="/all")
+    @PostMapping(value="/all")
     public ArrayList<UserData> getAllOrder(@RequestBody User user)
     {
-        return restaurentService.getAllOrder(user);
+        return userService.getAllOrder(user);
     }
     
 
     @PostMapping(value = "/create")
-    public String createOrder(@RequestBody User restaurent)
+    public String createOrder(@RequestBody User user)
     {
-        return restaurentService.createOrder(restaurent);
+        return userService.createOrder(user);
     }
     
     @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping(value = "/remove")
-    public String delete(@RequestBody User restaurent) 
+    public String delete(@RequestBody User user) 
     {
-        return restaurentService.delete(restaurent);
+        return userService.delete(user);
     }
 
     @PutMapping(value="/update")
-    public String update(@RequestBody User restaurent)
+    public String update(@RequestBody User user)
     {
-        return restaurentService.update(restaurent);
+        return userService.update(user);
+    }
+
+    @PostMapping(value="/login")
+    public Boolean loginAuthentication(@RequestBody User user)
+    {
+        return userService.loginAuthentication(user);
     }
 
 }
