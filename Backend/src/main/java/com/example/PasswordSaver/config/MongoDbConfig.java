@@ -19,7 +19,6 @@ public class MongoDbConfig
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
           .applyConnectionString(connectionString)
           .build();
-        
         return MongoClients.create(mongoClientSettings);
     }
 
