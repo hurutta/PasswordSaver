@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public ArrayList<UserData> getAllOrder(User user)
+    public ArrayList<UserData> getAllCredentials(User user)
     {
 
         List<User>temporaryList = new ArrayList<User>();
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public String createOrder(User user)
+    public String addCredential(User user)
     {
         List<User>temporaryList = new ArrayList<User>();
         temporaryList = userRepository.findByUsername(user.getUsername());
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public String delete(User user) 
+    public String removeCredential(User user) 
     {
         List<User>temporaryList = new ArrayList<User>();
         temporaryList = userRepository.findByUsername(user.getUsername());
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public String update(User user)
+    public String updateCredential(User user)
     {
         List<User>temporaryList = new ArrayList<User>();
         temporaryList = userRepository.findByUsername(user.getUsername());
@@ -152,5 +152,4 @@ public class UserServiceImpl implements UserService
             return authentication(temporaryList.get(0),user);
         }
     }
-
 }

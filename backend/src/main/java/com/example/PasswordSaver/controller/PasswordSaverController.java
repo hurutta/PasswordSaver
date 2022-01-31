@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "https://pass-word-saver.herokuapp.com")
 
 @RestController
 public class PasswordSaverController 
@@ -26,31 +26,31 @@ public class PasswordSaverController
 
 
     @PostMapping(value="/all")
-    public ArrayList<UserData> getAllOrder(@RequestBody User user)
+    public ArrayList<UserData> getAllCredentials(@RequestBody User user)
     {
-        return userService.getAllOrder(user);
+        return userService.getAllCredentials(user);
     }
     
 
     @PostMapping(value = "/create")
-    public String createOrder(@RequestBody User user)
+    public String addCredential(@RequestBody User user)
     {
-        return userService.createOrder(user);
+        return userService.addCredential(user);
     }
     
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "https://pass-word-saver.herokuapp.com")
     @DeleteMapping(value = "/remove")
-    public String delete(@RequestBody User user) 
+    public String removeCredential(@RequestBody User user) 
     {
-        return userService.delete(user);
+        return userService.removeCredential(user);
     }
 
 
     @PutMapping(value="/update")
-    public String update(@RequestBody User user)
+    public String updateCredential(@RequestBody User user)
     {
-        return userService.update(user);
+        return userService.updateCredential(user);
     }
 
     

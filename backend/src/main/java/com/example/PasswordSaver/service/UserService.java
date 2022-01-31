@@ -7,9 +7,9 @@ import com.example.PasswordSaver.model.UserData;
 
 public interface UserService
 {
-    public ArrayList<UserData> getAllOrder(User user);
-    public String createOrder(User user);
-    public String delete(User user);
-    public String update(User user);
+    public ArrayList<UserData> getAllCredentials(User user);
+    public String addCredential(User user);
+    public String removeCredential(User user);
+    public String updateCredential(User user);
     public Boolean loginAuthentication(User user);
 }
