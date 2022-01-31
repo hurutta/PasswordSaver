@@ -71,7 +71,7 @@
             {
 
 
-                let uri = 'http://localhost:8888/all';
+                let uri = 'https://pass-word-saver-backend.herokuapp.com/all';
                 var body = {username: this.$parent.infoAccount.username, password: this.$parent.infoAccount.password, userData: [{}] };
                 
                 this.axios.post(uri,body).then((response) => {
@@ -81,7 +81,7 @@
             },
             removeWebsite(webUrl,pass,index)
             {
-                let uri = 'http://localhost:8888/remove';
+                let uri = 'https://pass-word-saver-backend.herokuapp.com/remove';
                 
 
 
@@ -98,7 +98,7 @@
             },
             updatePassword(item)
             {
-                let uri = 'http://localhost:8888/update';
+                let uri = 'https://pass-word-saver-backend.herokuapp.com/update';
                 var newPass = window.prompt("Enter your new Password for " + item.websiteUrl + " : ");
                 var body = {username: this.$parent.infoAccount.username, password: this.$parent.infoAccount.password, userData: [ { websiteUrl: item.websiteUrl , websitePassword: newPass } ] };
 
@@ -110,7 +110,7 @@
             },
             addItem(webUrl,pass) 
             {
-                let uri = 'http://localhost:8888/create';
+                let uri = 'https://pass-word-saver-backend.herokuapp.com/create';
                 var body = {username: this.$parent.infoAccount.username, password: this.$parent.infoAccount.password, userData: [ { websiteUrl: webUrl , websitePassword: pass } ] };
 
                     this.axios.post(uri, body).then(response => { 

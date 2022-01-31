@@ -34,7 +34,7 @@
             login(usrname,pass) 
             {
 
-                let uri = 'http://localhost:8888/login';
+                let uri = 'https://pass-word-saver-backend.herokuapp.com/login';
                 var hash = this.CryptoJS.SHA3(pass).toString();
                 var query = {username: usrname, password: hash, userData: [{}] };
                 this.axios.post(uri, query).then((response) => {
@@ -49,6 +49,7 @@
                         }else
                         {
                             console.log("The username and / or password is incorrect");
+                            alert("The username and / or password is incorrect");
                         }
                    
                 });
@@ -58,7 +59,7 @@
             register(usrname,pass) 
             {
 
-                let uri = 'http://localhost:8888/create';
+                let uri = 'https://pass-word-saver-backend.herokuapp.com/create';
                 const hash = this.CryptoJS.SHA3(pass).toString();
                 
                 var query = {username: usrname, password: hash, userData: [{ websiteUrl: "Demo website" , websitePassword: "DemoPassword" }] };
