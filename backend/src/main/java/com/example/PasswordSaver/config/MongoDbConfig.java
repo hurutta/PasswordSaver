@@ -15,8 +15,8 @@ public class MongoDbConfig
     @Bean
     public MongoClient mongo() 
     {
-        //ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/passwordDB");
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://jawad:jawad@cluster0.pbe0u.mongodb.net/passwordDB");
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/passwordDB");
+        //ConnectionString connectionString = new ConnectionString("mongodb+srv://jawad:jawad@cluster0.pbe0u.mongodb.net/passwordDB");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
           .applyConnectionString(connectionString)
           .build();

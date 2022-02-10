@@ -9,9 +9,10 @@ public class RestServiceCorsApplication {
     public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/create").allowedOrigins("https://pass-word-saver.herokuapp.com");
-    registry.addMapping("/remove/{name}").allowedOrigins("https://pass-word-saver.herokuapp.com");
+			public void addCorsMappings(CorsRegistry registry) 
+			{
+				registry.addMapping("/create").allowedOrigins("http://localhost:8080/");
+    			//registry.addMapping("/remove/{name}").allowedOrigins("https://pass-word-saver.herokuapp.com");
 			}
 		};
 	}

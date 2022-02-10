@@ -9,14 +9,16 @@ import com.example.PasswordSaver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins = "https://pass-word-saver.herokuapp.com")
-
+//@CrossOrigin(origins = "https://pass-word-saver.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:8080/")
 @RestController
 public class PasswordSaverController 
 {
@@ -25,9 +27,10 @@ public class PasswordSaverController
     public UserService userService;
 
 
-    @PostMapping(value="/all")
-    public ArrayList<UserData> getAllCredentials(@RequestBody User user)
+    @GetMapping(value="/all/{username}/{password}")
+    public ArrayList<UserData> getAllCredentials(@PathVariable("username") String username, @PathVariable("password") String password)
     {
+        User user = new User(username,password,null);
         return userService.getAllCredentials(user);
     }
     
@@ -39,7 +42,7 @@ public class PasswordSaverController
     }
     
 
-    @CrossOrigin(origins = "https://pass-word-saver.herokuapp.com")
+    //@CrossOrigin(origins = "https://pass-word-saver.herokuapp.com")
     @DeleteMapping(value = "/remove")
     public String removeCredential(@RequestBody User user) 
     {
