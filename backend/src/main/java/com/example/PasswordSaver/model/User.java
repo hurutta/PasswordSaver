@@ -27,7 +27,6 @@ public class User
         super();
         this.username = username;
         this.password = password;
-        //userData = new ArrayList<UserData>();
         this.userData = userData;
     }
     

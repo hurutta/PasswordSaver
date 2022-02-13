@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService
 
         List<User>temporaryList = new ArrayList<User>();
         temporaryList = userRepository.findByUsername(user.getUsername());
-        
+
         if(authentication(temporaryList.get(0),user))
         {
             return (ArrayList<UserData>) temporaryList.get(0).getUserData();
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService
                 return "new website added for user : "+ newUser.getUsername() +"\n";
             }else
             {
-                return "Wrong password for user : "+user.getUsername()+"\n";
+                return "User already exist, try different username : "+user.getUsername()+"\n";
             }
         }
     }

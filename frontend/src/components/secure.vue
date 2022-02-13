@@ -71,19 +71,18 @@
             {
 
 
-                let uri = 'https://pass-word-saver-backend.herokuapp.com/all';
-                var body = {username: this.$parent.infoAccount.username, password: this.$parent.infoAccount.password, userData: [{}] };
+                let uri = 'http://localhost:8888/all/';
+                uri = uri + this.$parent.infoAccount.username + '/' + this.$parent.infoAccount.password;
                 
-                this.axios.post(uri,body).then((response) => {
+                
+                this.axios.get(uri).then((response) => {
                     this.items = response.data;
                 });
 
             },
             removeWebsite(webUrl,pass,index)
             {
-                let uri = 'https://pass-word-saver-backend.herokuapp.com/remove';
-                
-
+                let uri = 'http://localhost:8888/remove';
 
                 this.axios.delete(uri, { data: {username: this.$parent.infoAccount.username, password: this.$parent.infoAccount.password, userData: [ { websiteUrl: webUrl , websitePassword: pass } ] } } ).then(response => console.log(response.data));
                 this.items.splice(index, 1);
@@ -98,7 +97,7 @@
             },
             updatePassword(item)
             {
-                let uri = 'https://pass-word-saver-backend.herokuapp.com/update';
+                let uri = 'http://localhost:8888/update';
                 var newPass = window.prompt("Enter your new Password for " + item.websiteUrl + " : ");
                 var body = {username: this.$parent.infoAccount.username, password: this.$parent.infoAccount.password, userData: [ { websiteUrl: item.websiteUrl , websitePassword: newPass } ] };
 
@@ -110,7 +109,7 @@
             },
             addItem(webUrl,pass) 
             {
-                let uri = 'https://pass-word-saver-backend.herokuapp.com/create';
+                let uri = 'http://localhost:8888/create';
                 var body = {username: this.$parent.infoAccount.username, password: this.$parent.infoAccount.password, userData: [ { websiteUrl: webUrl , websitePassword: pass } ] };
 
                     this.axios.post(uri, body).then(response => { 
